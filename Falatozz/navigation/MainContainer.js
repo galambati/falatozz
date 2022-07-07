@@ -1,19 +1,29 @@
 import * as React from "react";
 
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import items from '../database/database.json';
 import Create from "./Create";
 import Read from "./Read";
+import {useEffect} from "react";
 
+const foodsFromDb = items;
 const readName = "Foods";
 const createName = "Add";
 const Tab = createBottomTabNavigator();
 
+
 export default function MainContainer() {
+    const [foods, setFoods] = React.useState(foodsFromDb);
+
+    const addNewFood = (newFood) => {
+        setFoods([...foods, newFood])
+    }
+
+    useEffect(() => {
+    }, [foods])
+
     return (
-        <NavigationContainer>
             <Tab.Navigator
                 initialRouteName={readName}
                 screenOptions={({route}) => ({
@@ -26,15 +36,13 @@ export default function MainContainer() {
                         } else if (rn === createName) {
                             iconName = focused ? 'add' : 'add-outline'
                         }
-
                         return <Ionicons name={iconName} size={size} color={color}></Ionicons>
                     }
                 })}>
 
-                <Tab.Screen name={readName} component={Read}></Tab.Screen>
-                <Tab.Screen name={createName} component={Create}></Tab.Screen>
+                <Tab.Screen name={readName} children={() => <Read foods={foods}/>}></Tab.Screen>
+                <Tab.Screen name={createName} children={() => <Create addNewFood={addNewFood}/>}></Tab.Screen>
 
             </Tab.Navigator>
-        </NavigationContainer>
     );
 }
