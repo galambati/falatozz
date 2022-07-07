@@ -24,6 +24,8 @@ export default function MainContainer() {
         setFoods(foods.filter((food)=> food.id !== id))
     }
 
+
+
     useEffect(() => {
     }, [foods])
 
