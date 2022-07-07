@@ -1,22 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Menu from "./menu";
+import {StatusBar} from 'expo-status-bar';
+import {StyleSheet, Text, View} from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello Falatozz.hu!</Text>
-      <StatusBar style="auto" />
-      <Menu/>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Text>Hello Falatozz.hu!</Text>
+            <StatusBar style="auto"/>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: 'orange',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    menu_container:{
+        display: "flex",
+    }
 });
