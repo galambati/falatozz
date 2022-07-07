@@ -7,8 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Create from "./Create";
 import Read from "./Read";
 
-const readName = "Read";
-const createName = "Create";
+const readName = "All";
+const createName = "Add";
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
@@ -22,7 +22,7 @@ export default function MainContainer() {
                         let rn = route.name;
 
                         if (rn === readName) {
-                            iconName = focused ? 'list' : 'home-outline'
+                            iconName = focused ? 'list' : 'list-outline'
                         } else if (rn === createName) {
                             iconName = focused ? 'add' : 'add-outline'
                         }
