@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {Card} from 'react-native-elements';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 
 const ItemList = (props) => {
@@ -20,7 +22,11 @@ const ItemList = (props) => {
                             <Text>{f.name}</Text>
                         </Card.Title>
                         <Text style={styles.text}>{f.description}</Text>
-                        <Text style={styles.text}>{f.count}</Text>
+                        <View style={styles.innerCardContainer}>
+                            <Ionicons name="create-outline" size={30}></Ionicons>
+                            <Text style={styles.text}>{f.count}</Text>
+                            <Ionicons name="trash-outline" size={30}></Ionicons>
+                        </View>
                     </Card>
                 </View>
             );
@@ -31,6 +37,10 @@ const ItemList = (props) => {
 const styles = StyleSheet.create({
     text: {
         textAlign: "center"
+    },
+    innerCardContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between"
     }
 })
 
