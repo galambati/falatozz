@@ -7,7 +7,7 @@ export default function Read(props) {
     return(
         <ScrollView>
             <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
-                <ItemList foods={props.foods}/>
+                <ItemList deleteFood={props.deleteFood} foods={props.foods}/>
             </View>
         </ScrollView>
     );

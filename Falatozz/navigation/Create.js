@@ -9,6 +9,7 @@ export default function Create(props) {
 
     const addFood = () => {
         props.addNewFood({
+            id: props.foods[props.foods.length-1].id + 1,
             name,
             description,
             count

@@ -7,9 +7,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ItemList = (props) => {
     return(
-        props.foods.map((f, i) => {
+        props.foods.map((food, index) => {
             return (
-                <View key={i}>
+                <View key={index}>
                     <Card containerStyle={{
                         backgroundColor: 'orange',
                         margin: 10,
@@ -19,13 +19,13 @@ const ItemList = (props) => {
                         width: 350
                     }}>
                         <Card.Title>
-                            <Text>{f.name}</Text>
+                            <Text>{food.name}</Text>
                         </Card.Title>
-                        <Text style={styles.text}>{f.description}</Text>
+                        <Text style={styles.text}>{food.description}</Text>
                         <View style={styles.innerCardContainer}>
                             <Ionicons name="create-outline" size={30}></Ionicons>
-                            <Text style={styles.text}>{f.count}</Text>
-                            <Ionicons name="trash-outline" size={30}></Ionicons>
+                            <Text style={styles.text}>{food.count}</Text>
+                            <Ionicons name="trash-outline" size={30} onPress={()=>{props.deleteFood(food.id)}}></Ionicons>
                         </View>
                     </Card>
                 </View>

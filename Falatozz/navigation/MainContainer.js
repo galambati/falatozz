@@ -20,6 +20,10 @@ export default function MainContainer() {
         setFoods([...foods, newFood])
     }
 
+    const deleteFood = (id) => {
+        setFoods(foods.filter((food)=> food.id !== id))
+    }
+
     useEffect(() => {
     }, [foods])
 
@@ -40,8 +44,8 @@ export default function MainContainer() {
                     }
                 })}>
 
-                <Tab.Screen name={readName} children={() => <Read foods={foods}/>}></Tab.Screen>
-                <Tab.Screen name={createName} children={() => <Create addNewFood={addNewFood}/>}></Tab.Screen>
+                <Tab.Screen name={readName} children={() => <Read deleteFood={deleteFood} foods={foods}/>}></Tab.Screen>
+                <Tab.Screen name={createName} children={() => <Create foods={foods} addNewFood={addNewFood}/>}></Tab.Screen>
 
             </Tab.Navigator>
     );
