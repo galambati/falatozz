@@ -1,12 +1,13 @@
 import * as React from "react";
-import {View, Text} from "react-native";
+import {ScrollView, View} from "react-native";
+import ItemList from "./Item";
 
 export default function Read() {
     return(
-        <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
-            <Text
-            onPress={() => alert("Read screen")}
-            style={{fontSize: 26, fontWeight: "bold"}}>Read</Text>
-        </View>
+        <ScrollView>
+            <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
+                <ItemList/>
+            </View>
+        </ScrollView>
     );
 }

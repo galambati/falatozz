@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Create from "./Create";
 import Read from "./Read";
 
-const readName = "All";
+const readName = "Foods";
 const createName = "Add";
 const Tab = createBottomTabNavigator();
 
