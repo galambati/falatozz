@@ -23,7 +23,7 @@ const ItemList = (props) => {
                         </Card.Title>
                         <Text style={styles.text}>{food.description}</Text>
                         <View style={styles.innerCardContainer}>
-                            <Ionicons name="create-outline" size={30}></Ionicons>
+                            <Ionicons name="create-outline" size={30} onPress={()=>{props.openUpdateComponent(food)}}></Ionicons>
                             <Text style={styles.text}>{food.count}</Text>
                             <Ionicons name="trash-outline" size={30} onPress={()=>{props.deleteFood(food.id)}}></Ionicons>
                         </View>

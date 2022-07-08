@@ -1,11 +1,50 @@
 import * as React from "react";
-import {View, Button, TextInput} from "react-native";
+import {View, Button, TextInput, Text, StyleSheet} from "react-native";
 
 
 export default function Create(props) {
+
     const [name, setName] = React.useState('');
+    const [nameError, setNameError] = React.useState('');
+
     const [description, setDescription] = React.useState('');
+    const [descriptionError, setDescriptionError] = React.useState('');
+
     const [count, setCount] = React.useState('');
+    const [countError, setCountError] = React.useState('');
+
+
+    const validateAndAdd = () => {
+        let nameValid = false;
+        if (name.length === 0){
+            setNameError("Name is required!")
+        } else {
+            setNameError("");
+            nameValid= true;
+        }
+
+        let descriptionValid = false;
+        if (description.length <= 9){
+            setDescriptionError("Description should be minimum 10 characters!")
+        } else {
+            setDescriptionError("");
+            descriptionValid = true;
+        }
+
+        let countValid = false
+        if (isNaN(parseInt(count)) ){
+            setCountError("You should give a valid number!")
+        } else {
+            setCountError("")
+            countValid = true;
+        }
+
+        if(nameValid && descriptionValid && countValid){
+            alert("Food added")
+            addFood()
+        }
+    }
+
 
     const addFood = () => {
         props.addNewFood({
@@ -15,25 +54,41 @@ export default function Create(props) {
             count
         })
     }
+
+
+    const invalid = StyleSheet.create({
+        text: {
+            color: "red"
+        }
+    })
+
+
     return (
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
             <TextInput placeholder='e.g. Hamburger'
-                   errorStyle={{color: 'red'}}
-                   errorMessage='Please enter a valid name!'
-                   onChangeText={(newName) => setName(newName)}
+                   onChangeText={newName => setName(newName)}
+                   value={name}
             ></TextInput>
+            {nameError.length > 0 &&
+            <Text style={invalid.text}>{nameError}</Text>
+            }
             <TextInput placeholder='e. g. This is a delicious grilled meal made out of fish.'
-                   errorStyle={{color: 'red'}}
-                   errorMessage='Please fill out this!'
-                   onChangeText={(newDescription ) => setDescription(newDescription)}
+                   onChangeText={newDescription => setDescription(newDescription)}
+                   value={description}
             ></TextInput>
+            {descriptionError.length > 0 &&
+            <Text style={invalid.text}>{descriptionError}</Text>
+            }
             <TextInput placeholder='e.g. 2'
                    keyboardType={'numeric'}
-                   errorStyle={{color: 'red'}}
-                   errorMessage='Please enter a valid number!'
-                   onChangeText={(newCount) => setCount(newCount)}
+                   onChangeText={newCount => setCount(newCount)}
+                   value={count}
             ></TextInput>
-            <Button title={'Add food'} onPress={addFood}></Button>
+            {countError.length > 0 &&
+            <Text style={invalid.text}>{countError}</Text>
+            }
+            <Button title={'Add food'} onPress={validateAndAdd}></Button>
         </View>
     );
+
 }
