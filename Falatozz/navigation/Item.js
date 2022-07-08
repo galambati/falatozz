@@ -4,7 +4,6 @@ import {Card} from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-
 const ItemList = (props) => {
     return(
         props.foods.map((food, index) => {

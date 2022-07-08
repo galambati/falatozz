@@ -42,6 +42,10 @@ export default function Create(props) {
         if(nameValid && descriptionValid && countValid){
             alert("Food added")
             addFood()
+            setName("")
+            setCount("")
+            setDescription("")
+            // navigation.navigate('Read') not working properly :(
         }
     }
 
@@ -56,9 +60,15 @@ export default function Create(props) {
     }
 
 
-    const invalid = StyleSheet.create({
-        text: {
+    const styling = StyleSheet.create({
+        invalid: {
             color: "red"
+        },
+        input: {
+            width: 350,
+            borderColor: "darkgrey",
+            borderWidth: "thin",
+            margin: 10
         }
     })
 
@@ -68,24 +78,27 @@ export default function Create(props) {
             <TextInput placeholder='e.g. Hamburger'
                    onChangeText={newName => setName(newName)}
                    value={name}
+                   style={styling.input}
             ></TextInput>
             {nameError.length > 0 &&
-            <Text style={invalid.text}>{nameError}</Text>
+            <Text style={styling.invalid}>{nameError}</Text>
             }
             <TextInput placeholder='e. g. This is a delicious grilled meal made out of fish.'
                    onChangeText={newDescription => setDescription(newDescription)}
                    value={description}
+                   style={styling.input}
             ></TextInput>
             {descriptionError.length > 0 &&
-            <Text style={invalid.text}>{descriptionError}</Text>
+            <Text style={styling.invalid}>{descriptionError}</Text>
             }
             <TextInput placeholder='e.g. 2'
                    keyboardType={'numeric'}
                    onChangeText={newCount => setCount(newCount)}
                    value={count}
+                   style={styling.input}
             ></TextInput>
             {countError.length > 0 &&
-            <Text style={invalid.text}>{countError}</Text>
+            <Text style={styling.invalid}>{countError}</Text>
             }
             <Button title={'Add food'} onPress={validateAndAdd}></Button>
         </View>
